@@ -24,7 +24,7 @@
     ]</code></pre>
 
 
-<h2>Setup Details</h2>
+<h2>Getting Started without Docker</h2>
 1. Clone the repository:
 
 ```sh
@@ -53,13 +53,13 @@ go run cmd/main.go
 
 1. Clone the repository:
 ```sh
-git clone https://github.com/ahmadammarm/go-rest-api-template.git
+git clone https://github.com/ahmadammarm/premier-league-api.git
 ```
 
 2. Navigate to the project directory:
 
 ```sh
-cd go-rest-api-template
+cd premier-league-api
 ```
 
 3. Build the docker image:
