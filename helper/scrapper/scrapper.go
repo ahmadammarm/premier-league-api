@@ -14,6 +14,12 @@ type PremierLeagueScrapper struct {
 	url string
 }
 
+func NewPremierLeagueScrapper(url string) *PremierLeagueScrapper {
+	return &PremierLeagueScrapper{
+		url: url,
+	}
+}
+
 func (scrapper *PremierLeagueScrapper) FetchStandings() ([]entity.TeamStanding, error) {
 	client := &http.Client{
 		Timeout: 10 * time.Second,
@@ -31,7 +37,7 @@ func (scrapper *PremierLeagueScrapper) FetchStandings() ([]entity.TeamStanding, 
 		return nil, fmt.Errorf("failed to fetch standings: %s", response.Status)
 	}
 
-    
+
 	document, err := goquery.NewDocumentFromReader(response.Body)
 
 	if err != nil {

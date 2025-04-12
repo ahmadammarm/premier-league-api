@@ -9,13 +9,13 @@ import (
 )
 
 type StandingsHandler struct {
-    service service.StandingService
+	service service.StandingService
 }
 
 func NewStandingsHandler(service service.StandingService) *StandingsHandler {
-    return &StandingsHandler{
-        service: service,
-    }
+	return &StandingsHandler{
+		service: service,
+	}
 }
 
 func (handler *StandingsHandler) GetAllStandings(context *fiber.Ctx) error {
@@ -74,5 +74,3 @@ func (handler *StandingsHandler) GetTeamsByZone(context *fiber.Ctx) error {
 	)
 	return context.JSON(response)
 }
-
-
