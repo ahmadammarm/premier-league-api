@@ -13,13 +13,19 @@ type StandingScrapper interface {
 
 type StandingService interface {
 	GetAllStandings() ([]entity.TeamStanding, error)
-	GetTeamByPosition(position string) ([]entity.TeamStanding, error)
+	GetTeamsByPosition(position string) ([]entity.TeamStanding, error)
 	GetTeamByName(name string) ([]entity.TeamStanding, error)
-	GetTeamByZone(zone string) ([]entity.TeamStanding, error)
+	GetTeamsByZone(zone string) ([]entity.TeamStanding, error)
 }
 
 type standingService struct {
 	scrapper StandingScrapper
+}
+
+func NewStandingsService(scrapper StandingScrapper) StandingService {
+	return &standingService{
+		scrapper: scrapper,
+	}
 }
 
 // GetAllStandings
@@ -32,7 +38,7 @@ func (service *standingService) GetAllStandings() ([]entity.TeamStanding, error)
 }
 
 // GetTeamByPosition
-func (service *standingService) GetTeamByPosition(position string) ([]entity.TeamStanding, error) {
+func (service *standingService) GetTeamsByPosition(position string) ([]entity.TeamStanding, error) {
 	standings, err := service.GetAllStandings()
 	if err != nil {
 		return nil, err
@@ -71,7 +77,7 @@ func (service *standingService) GetTeamByName(name string) ([]entity.TeamStandin
 }
 
 // GetTeamByZone
-func (service *standingService) GetTeamByZone(zone string) ([]entity.TeamStanding, error) {
+func (service *standingService) GetTeamsByZone(zone string) ([]entity.TeamStanding, error) {
 	standings, err := service.GetAllStandings()
 	if err != nil {
 		return nil, err
@@ -110,10 +116,4 @@ func (service *standingService) GetTeamByZone(zone string) ([]entity.TeamStandin
 	}
 
 	return result, nil
-}
-
-func NewStandingsService(scrapper StandingScrapper) StandingService {
-	return &standingService{
-		scrapper: scrapper,
-	}
 }
